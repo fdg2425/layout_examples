@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
             // to run the different examples, exchange the example number in next line.
             // Remark: when you run them on Chrome and there are exceptions like in example16,
             //         you see the exception in Terminal and there under DebugConsole.
-            getExample30());
+            getExample33());
   }
 
   Widget getExample01() {
@@ -323,6 +323,66 @@ class MainApp extends StatelessWidget {
               //child: const Column(children: [Text('Hello!'), Text('Goodbye!')]),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  // This is the example, discussed in the video at the end of the article https://docs.flutter.dev/ui/layout/constraints
+  // This example produces a "Vertical viewport was given unbounded height." exception.
+  // BTW: you can directly reach this video via https://www.youtube.com/watch?v=jckqXR5CrPI.
+
+  Widget getExample31() {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text("produce unbounded height exception"),
+          ListView(children: const [
+            Text("Listview item 1"),
+            Text("Listview item 2")
+          ])
+        ],
+      ),
+    );
+  }
+
+  // This is the first possibility to solve the "unbounded height" exception given at the end of the video (video minute 4:00)
+  // "make the ListView as big as possible still giving space to the other children of the Column"
+  // -> surround ListView with Expanded:
+  Widget getExample32() {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text("avoid unbounded height exception with Expanded"),
+          Expanded(
+            child: ListView(children: const [
+              Text("Listview item 1"),
+              Text("Listview item 2")
+            ]),
+          )
+        ],
+      ),
+    );
+  }
+
+  // This is the second possibility to solve the "unbounded height" exception (see video minute 4:23):
+  // "if you want the ListView to have an exact size"
+  // -> surround ListView with SizedBox:
+  Widget getExample33() {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text("avoid unbounded height exception with SizedBox"),
+          SizedBox(
+            height: 42,
+            child: ListView(children: const [
+              Text("Listview item 1"),
+              Text("Listview item 2")
+            ]),
+          )
         ],
       ),
     );
