@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
             // to run the different examples, exchange the example number in next line.
             // Remark: when you run them on Chrome and there are exceptions like in example16,
             //         you see the exception in Terminal and there under DebugConsole.
-            getExample01());
+            getExample30());
   }
 
   Widget getExample01() {
@@ -307,6 +307,23 @@ class MainApp extends StatelessWidget {
           color: blue,
           child: const Column(children: [Text('Hello!'), Text('Goodbye!')]),
         ),
+      ),
+    );
+  }
+
+  // I added this example 30 to simulate what we have in flying_balls.
+  // Take care: we you delete the Column widget in this example, you get an exception "Incorrect use of ParentDataWidget."
+  Widget getExample30() {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              color: blue,
+              //child: const Column(children: [Text('Hello!'), Text('Goodbye!')]),
+            ),
+          ),
+        ],
       ),
     );
   }
